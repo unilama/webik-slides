@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Unit Tests - Why not?!?</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/serif.css" id="theme">
+		<style>
+			.behat-keywords{
+				color: #66d9ef;
+			}
+			.highlight-other{
+				font-size: 31px !important; background:#3F3F3F; color:#DCDCDC; padding:25px;
+			}
+			.green{
+				color: green;
+			}
+		</style>
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+			
+			<section>
+				<h1>Unit Tests</h1>
+				<h3>Why not?!?</h3>
+				<p>
+					<small>Created by <a href="http://about.me/webik">Marcin Stanislawski</a> (<a href="http://www.interia.pl">Interia.pl</a>)</small>
+				</p>
+			</section>
+			
+			<section>
+				<h2>Testy zbędny wodotrysk programowania ...</h2>
+				<ul>
+					<li class="fragment" data-fragment-index="0">Nikt nam nie płaci za ich zrobienie</li>
+					<li class="fragment" data-fragment-index="1">Przełożeni nie dają nam na nie czasu ([czyt.]&nbsp;dedline&nbsp;przede&nbsp;wszystkim)</li>
+					<li class="fragment" data-fragment-index="2">"Odziedziczyłem ten kod po kimś  - jest nie testowalny"</li>
+					<li class="fragment" data-fragment-index="3">Po co testować coś co jeszcze nie działa</li>
+					<li class="fragment" data-fragment-index="4">Trzeba zmarnować czas na nauczenie się TDD.</li>
+					<li class="fragment" data-fragment-index="4">Przecież piszę bez błędów :)</li>
+				</ul>
+			</section>
+			
+			<section>
+				<h2>Może jednak warto...<h2>
+				<br />
+				<p>
+					<img class="fragment" data-fragment-index="0" src="img/first_test.gif" />
+				</p>
+			</section>
+			<section>
+				<section>
+					<h2>Refactoring kodu</h2>
+					<p>
+						<ul>
+							<li>Wszystkie testy wykonują się poprawnie &#8594; Testowalny </li>
+							<li>Usunięcie duplikacji &#8594; Modularny</li>
+							<li>Uczytelnienie &#8594;  Łatwy w analizie </li>
+							<li>Usunięcie złożoności &#8594; Prosty</li>
+					</p>
+				</section>
+				<section>
+					<h2>Kod żyje (powinien) tak...</h2>
+					<img src="img/code-cycle.jpg" />
+				</section>
+				<section>
+					<h2>Ten kod na pewno nie jest nigdzie używany...</h2>
+					<img src="img/i_dont_need_this_code.gif" />
+				</section>
+				<section>
+					<h2>Refactoring z testami</h2>
+					<p>
+						<ol>
+							<li class="fragment" data-fragment-index="0">wykonujemy testy - wszystkie "<span class="green">zielone</span>"</li>
+							<li class="fragment" data-fragment-index="1">refactorujemy kod</li>
+							<li class="fragment" data-fragment-index="2">wykonujemy testy - i poprawiamy nasz kod dotąd aż nie będą "<span class="green">zielone</span>"</li>
+						</ol>
+					</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Wiesz dokładnie<br />gdzie jest błąd</h2>
+				</section>
+				
+				<section>
+					<h3>Monitoring kodu</h3>
+					<img src="img/jenkins_testresult.png" />
+				</section>
+			</section>
+			<section>
+					<h2>Reużywalność kodu</h2>
+				</section>
+			<section>
+				<section>
+					<h2>Dokumentacja</h2>
+					<p>
+						Testy doskonale nadają się do dokumentowania kodu<br />
+						Nawet do zastąpienia DocBlock.
+					</p>
+				</section>
+				<section>
+					<h3>Przykład zestawu testów</h3>
+					<pre>
+						<code class="php">
+	class BankAccountTest extends PHPUnit_Framework_TestCase {
+
+		public function testBalanceIsInitiallyZero(){}
+		public function testBalanceCannotBecomeNegative(){}
+	}
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h3>Generowanie dokumentacji</h3>
+					<pre class="highlight-other">
+phpunit --testdox BankAccountTest
+PHPUnit 3.7.0 by Sebastian Bergmann.
+
+BankAccount
+ [x] Balance is initially zero
+ [x] Balance cannot become negative
+					</pre>
+				</section>				
+			</section>
+			
+			<section>
+				<section>
+					<h2>Testowanie na <br />pre-produkcji</h2>
+				</section>
+				<section>
+					<h3>
+						Najlepiej testować na danych produkcyjnych!?!
+					</h3>
+					<blockquote class="fragment"  data-fragment-index="0" >
+							 (...)wymogi chociażby PCI DSS, narzucające sposób rozwoju oprogramowania dedykowanego instytucjom finansowym, zabraniają korzystania w trakcie developmentu z oryginalnych danych kart płatniczych(...)
+					</blockquote>
+					<blockquote class="fragment" data-fragment-index="1" >
+						 (...) i co ciekawe, programiści potrafią stworzyć oprogramowanie z takim ograniczeniem — jak oni to robią? :-)
+					</blockquote>
+				</section>
+			</section>
+			
+			<section>
+				<section>
+					<h2>TDD<h2>
+				</section>
+				<section>
+					
+				</section>
+				<section>
+					<h3>
+						Agile without TDD 
+						is like cinema without popcorn.
+					</h3>
+				</section>
+			</section>
+			<section>
+				<h2>BDD<h2>
+				<br />
+				<pre class="highlight-other"><span class="behat-keywords">Feature</span>: Your first feature
+	In order to start using Behat
+	As a manager or developer
+	I need to try
+
+<span class="behat-keywords">Scenario</span>: Successfully describing scenario
+	<span class="behat-keywords">Given</span> there is something
+	<span class="behat-keywords">When</span> I do something
+	<span class="behat-keywords">Then</span> I should see something</pre>
+			</section>
+			
+			<section>
+				<h1>Koniec</h1>
+				<h2>Dziękuję za uwagę<h2>
+				<h3><a href="http://about.me/webik">Marcin Stanisławski</a></h3>
+			</section>
+				
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
