@@ -76,24 +76,55 @@
 				</p>
 			</section>
 			<section>
+                            <h2>Co to jest "ten" test???</h2>
+                            <pre>
+                                <code class="php">
+class StackTest extends PHPUnit_Framework_TestCase
+{
+    public function testPushAndPop()
+    {
+        $stack = array();
+        $this->assertEquals(0, count($stack));
+ 
+        array_push($stack, 'foo');
+        $this->assertEquals('foo', $stack[count($stack)-1]);
+        $this->assertEquals(1, count($stack));
+ 
+        $this->assertEquals('foo', array_pop($stack));
+        $this->assertEquals(0, count($stack));
+    }
+}
+                                </code>
+                            </pre>
+			</section>
+			<section>
+                               <section>
+                                        <h2>Refactoring</h2>
+                               </section>
+                               <section>
+                                        <h2>Ten kod na pewno nie jest nigdzie używany...</h2>
+                                        <img src="img/i_dont_need_this_code.gif" />
+                               </section>
+                                <section>
+                                        <h2>Kod żyje (powinien) tak...</h2>
+                                        <img src="img/code-cycle.jpg" />
+                               </section>
 				<section>
-					<h2>Refactoring kodu</h2>
+					<h3>Aby kod był:</h3>
 					<p>
 						<ul>
-							<li>Wszystkie testy wykonują się poprawnie &#8594; Testowalny </li>
-							<li>Usunięcie duplikacji &#8594; Modularny</li>
-							<li>Uczytelnienie &#8594;  Łatwy w analizie </li>
-							<li>Usunięcie złożoności &#8594; Prosty</li>
+							<li>Testowalny <span class="fragment" data-fragment-index="1">&#8594; Wszystkie testy wykonują się poprawnie<span></li>
+							<li>Modularny <span class="fragment" data-fragment-index="1">&#8594; Usunięcie duplikacji<span></li>
+							<li>Łatwy w analizie <span class="fragment" data-fragment-index="1">&#8594; Zwiększenie czytelności<span></li>
+							<li>Prosty <span class="fragment" data-fragment-index="1">&#8594; Usunięcie złożoności<span></li>
+                                              </ul>
 					</p>
 				</section>
 				<section>
-					<h2>Kod żyje (powinien) tak...</h2>
-					<img src="img/code-cycle.jpg" />
-				</section>
-				<section>
-					<h2>Ten kod na pewno nie jest nigdzie używany...</h2>
-					<img src="img/i_dont_need_this_code.gif" />
-				</section>
+                                    <h2>Refactoring kodu*</h2>
+                                    <img src="img/fail.gif" class="fragment" data-fragment-index="0" />
+                                    <p class="fragment" data-fragment-index="1">* - bez testów jednostkowych</p>
+                               </section>
 				<section>
 					<h2>Refactoring z testami</h2>
 					<p>
@@ -104,20 +135,29 @@
 						</ol>
 					</p>
 				</section>
+				<section>
+                                    <h2>Pewność że nic się przy okazji nie wysypało</h2>
+                                    <img src="img/cool.gif" />
+				</section>
 			</section>
 			<section>
+                               <section>
+                                    <h2>Modularność kodu</h2>
+                               </section>
 				<section>
 					<h2>Wiesz dokładnie<br />gdzie jest błąd</h2>
+					<img src="img/results_fail.png" />
 				</section>
 				
 				<section>
-					<h3>Monitoring kodu</h3>
-					<img src="img/jenkins_testresult.png" />
-				</section>
+                                    <h2>Reużywalność kodu</h2>
+                                    <h3>Brak duplikacji</h3>
+                                </section>
 			</section>
 			<section>
-					<h2>Reużywalność kodu</h2>
-				</section>
+                                <h3>Automatzacja testów</h3>
+                                <img src="img/jenkins_testresult.png" />
+                        </section>
 			<section>
 				<section>
 					<h2>Dokumentacja</h2>
@@ -170,10 +210,15 @@ BankAccount
 			
 			<section>
 				<section>
-					<h2>TDD<h2>
+					<h2>TDD</h2>
+                                        <ol>
+                                            <li class="fragment" data-fragment-index="0" >Piszemy test sprawdzający dodawaną funkcjonalność. Test w tym momencie zwraca błąd.</li>
+                                            <li class="fragment" data-fragment-index="1" >Implementujemy funkcjonalności. W tym momencie napisany test powinien się udać.</li>
+                                            <li class="fragment" data-fragment-index="2" >Refaktoryzacja napisanego kodu, aby spełniał oczekiwane standardy.</li>
+                                       </ol>
 				</section>
 				<section>
-					
+                                        <img src="img/tdd_cycle.jpg" />
 				</section>
 				<section>
 					<h3>
