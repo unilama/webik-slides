@@ -49,197 +49,21 @@
 			<div class="slides">
 			
 			<section>
-				<h1>Unit Tests</h1>
+				<h1>Programowanie pełnym zdaniem.</h1>
 				<h3>Why not?!?</h3>
 				<p>
-					<small>Created by <a href="http://about.me/webik">Marcin Stanislawski</a> (<a href="http://www.interia.pl">Interia.pl</a>)</small>
+				  <small><a href="http://about.me/webik">Marcin Stanislawski</a> (<a href="http://www.interia.pl">Interia.pl</a>)</small>
+				  <small><a href="https://twitter.com/unilama">@unilama</small>
 				</p>
 			</section>
 			
 			<section>
-				<h2>Testy zbędny wodotrysk programowania ...</h2>
+				<h2></h2>
 				<ul>
-					<li class="fragment" data-fragment-index="0">Nikt nam nie płaci za ich zrobienie</li>
-					<li class="fragment" data-fragment-index="1">Przełożeni nie dają nam na nie czasu ([czyt.]&nbsp;dedline&nbsp;przede&nbsp;wszystkim)</li>
-					<li class="fragment" data-fragment-index="2">"Odziedziczyłem ten kod po kimś  - jest nie testowalny"</li>
-					<li class="fragment" data-fragment-index="3">Po co testować coś co jeszcze nie działa</li>
-					<li class="fragment" data-fragment-index="4">Trzeba zmarnować czas na nauczenie się TDD.</li>
-					<li class="fragment" data-fragment-index="4">Przecież piszę bez błędów :)</li>
+					
 				</ul>
 			</section>
 			
-			<section>
-				<h2>Może jednak warto...<h2>
-				<br />
-				<p>
-					<img class="fragment" data-fragment-index="0" src="img/first_test.gif" />
-				</p>
-			</section>
-			<section>
-                            <h2>Co to jest "ten" test???</h2>
-                            <pre>
-                                <code class="php">
-class StackTest extends PHPUnit_Framework_TestCase
-{
-    public function testPushAndPop()
-    {
-        $stack = array();
-        $this->assertEquals(0, count($stack));
- 
-        array_push($stack, 'foo');
-        $this->assertEquals('foo', $stack[count($stack)-1]);
-        $this->assertEquals(1, count($stack));
- 
-        $this->assertEquals('foo', array_pop($stack));
-        $this->assertEquals(0, count($stack));
-    }
-}
-                                </code>
-                            </pre>
-			</section>
-			<section>
-                               <section>
-                                        <h2>Refactoring</h2>
-                               </section>
-                               <section>
-                                        <h2>Ten kod na pewno nie jest nigdzie używany...</h2>
-                                        <img src="img/i_dont_need_this_code.gif" />
-                               </section>
-                                <section>
-                                        <h2>Kod żyje (powinien) tak...</h2>
-                                        <img src="img/code-cycle.jpg" />
-                               </section>
-				<section>
-					<h3>Aby kod był:</h3>
-					<p>
-						<ul>
-							<li>Testowalny <span class="fragment" data-fragment-index="1">&#8594; Wszystkie testy wykonują się poprawnie<span></li>
-							<li>Modularny <span class="fragment" data-fragment-index="1">&#8594; Usunięcie duplikacji<span></li>
-							<li>Łatwy w analizie <span class="fragment" data-fragment-index="1">&#8594; Zwiększenie czytelności<span></li>
-							<li>Prosty <span class="fragment" data-fragment-index="1">&#8594; Usunięcie złożoności<span></li>
-                                              </ul>
-					</p>
-				</section>
-				<section>
-                                    <h2>Refactoring kodu*</h2>
-                                    <img src="img/fail.gif" class="fragment" data-fragment-index="0" />
-                                    <p class="fragment" data-fragment-index="1">* - bez testów jednostkowych</p>
-                               </section>
-				<section>
-					<h2>Refactoring z testami</h2>
-					<p>
-						<ol>
-							<li class="fragment" data-fragment-index="0">wykonujemy testy - wszystkie "<span class="green">zielone</span>"</li>
-							<li class="fragment" data-fragment-index="1">refactorujemy kod</li>
-							<li class="fragment" data-fragment-index="2">wykonujemy testy - i poprawiamy nasz kod dotąd aż nie będą "<span class="green">zielone</span>"</li>
-						</ol>
-					</p>
-				</section>
-				<section>
-                                    <h2>Pewność że nic się przy okazji nie wysypało</h2>
-                                    <img src="img/cool.gif" />
-				</section>
-			</section>
-			<section>
-                               <section>
-                                    <h2>Modularność kodu</h2>
-                               </section>
-				<section>
-					<h2>Wiesz dokładnie<br />gdzie jest błąd</h2>
-					<img src="img/results_fail.png" />
-				</section>
-				
-				<section>
-                                    <h2>Reużywalność kodu</h2>
-                                    <h3>Brak duplikacji</h3>
-                                </section>
-			</section>
-			<section>
-                                <h3>Automatzacja testów</h3>
-                                <img src="img/jenkins_testresult.png" />
-                        </section>
-			<section>
-				<section>
-					<h2>Dokumentacja</h2>
-					<p>
-						Testy doskonale nadają się do dokumentowania kodu<br />
-						Nawet do zastąpienia DocBlock.
-					</p>
-				</section>
-				<section>
-					<h3>Przykład zestawu testów</h3>
-					<pre>
-						<code class="php">
-	class BankAccountTest extends PHPUnit_Framework_TestCase {
-
-		public function testBalanceIsInitiallyZero(){}
-		public function testBalanceCannotBecomeNegative(){}
-	}
-						</code>
-					</pre>
-				</section>
-				<section>
-					<h3>Generowanie dokumentacji</h3>
-					<pre class="highlight-other">
-phpunit --testdox BankAccountTest
-PHPUnit 3.7.0 by Sebastian Bergmann.
-
-BankAccount
- [x] Balance is initially zero
- [x] Balance cannot become negative
-					</pre>
-				</section>				
-			</section>
-			
-			<section>
-				<section>
-					<h2>Testowanie na <br />pre-produkcji</h2>
-				</section>
-				<section>
-					<h3>
-						Najlepiej testować na danych produkcyjnych!?!
-					</h3>
-					<blockquote class="fragment"  data-fragment-index="0" >
-							 (...)wymogi chociażby PCI DSS, narzucające sposób rozwoju oprogramowania dedykowanego instytucjom finansowym, zabraniają korzystania w trakcie developmentu z oryginalnych danych kart płatniczych(...)
-					</blockquote>
-					<blockquote class="fragment" data-fragment-index="1" >
-						 (...) i co ciekawe, programiści potrafią stworzyć oprogramowanie z takim ograniczeniem — jak oni to robią? :-)
-					</blockquote>
-				</section>
-			</section>
-			
-			<section>
-				<section>
-					<h2>TDD</h2>
-                                        <ol>
-                                            <li class="fragment" data-fragment-index="0" >Piszemy test sprawdzający dodawaną funkcjonalność. Test w tym momencie zwraca błąd.</li>
-                                            <li class="fragment" data-fragment-index="1" >Implementujemy funkcjonalności. W tym momencie napisany test powinien się udać.</li>
-                                            <li class="fragment" data-fragment-index="2" >Refaktoryzacja napisanego kodu, aby spełniał oczekiwane standardy.</li>
-                                       </ol>
-				</section>
-				<section>
-                                        <img src="img/tdd_cycle.jpg" />
-				</section>
-				<section>
-					<h3>
-						Agile without TDD 
-						is like cinema without popcorn.
-					</h3>
-				</section>
-			</section>
-			<section>
-				<h2>BDD<h2>
-				<br />
-				<pre class="highlight-other"><span class="behat-keywords">Feature</span>: Your first feature
-	In order to start using Behat
-	As a manager or developer
-	I need to try
-
-<span class="behat-keywords">Scenario</span>: Successfully describing scenario
-	<span class="behat-keywords">Given</span> there is something
-	<span class="behat-keywords">When</span> I do something
-	<span class="behat-keywords">Then</span> I should see something</pre>
-			</section>
 			
 			<section>
 				<h1>Koniec</h1>
