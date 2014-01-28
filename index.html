@@ -17,7 +17,12 @@
 		<link rel="stylesheet" href="css/reveal.min.css">
 		<link rel="stylesheet" href="css/theme/serif.css" id="theme">
 		<style>
-			
+			.small_logo{
+			    max-height: 70px !important;
+			    border: none !important;
+			    vertical-align: middle !important;
+			    margin: 10px 17px !important;
+			}
 		</style>
 
 		<!-- For syntax highlighting -->
@@ -41,41 +46,122 @@
 			<div class="slides">
 			
 			<section>
-				<h2>Programowanie <br /> pełnym zdaniem.</h2>
+				<h2>Programowanie <br /> pełnym zdaniem</h2>
 				<p>
 				  <small><a href="http://about.me/webik">Marcin Stanislawski</a> (<a href="http://www.interia.pl">Interia.pl</a>)</small>
+				  <br />
 				  <small><a href="https://twitter.com/unilama">@unilama</a></small>
 				</p>
 			</section>
 			
 			<section>
 				<h2>Ale o co cho<span style="font-size:0.5em;">dzi</span>???</h2>
+				<pre>
 				<code class="erlang">
-				    test = 1.
+fall_velocity(Planemo, Distance) ->
+  Gravity = case Planemo of
+    earth -> 9.8;
+    moon -> 1.6;
+    mars -> 3.71
+  end,
+  
+  try math:sqrt(2 * Gravity * Distance) of
+    Result -> Result
+  catch
+    error:Error -> {error, Error}
+  end.
 				</code>
+				</pre>
+			</section>
+			<section>
+			  <h1>Erlang</h1>
+			  <img src="img/logo.jpg" />
+			</section>
+			<section>
+			    <h2>Erlang geneza</h2>
+			    <p><s>Ericson Lang</s> Agner Krarup Erlang</p>
+			    
 			</section>
 			
 			<section>
-				<h2>Rzuć pan belkę do maszyny.</h2>
+			  <h2>Ciekawostka</h2>
+			  <p>W 1998 roku Ericsson zademonstrował switch AXD301 z oprogramowaniem zawierającym milion linii kodu w Erlangu, który osiągnął wskaźnik niezawodności 99,9999999%, co oznaczało, że w ciągu roku system mógł mieć co najwyżej 3,15 sekundy przestoju spowodowanego awarią.</p>
+			</section>
+			
+			<section>
+				<h2>Rzuć pan belkę do maszyny</h2>
 				<img src="img/bob_budowniczy.gif" />
 				
 			</section>
 			<section>
 				<h2>Rzuć pan belkę do maszyny.</h2>
+				
 				<p>
-				    Erlang VM - BEAM 
+				  <ul>
+				    <li>moduły w plikach źródłowych (.erl)</li>
+				    <li>Erlang VM - pliki BEAM (Bodgan’s Erlang Abstract Machine)</li>
+				  </ul>
 				</p>
 				<p>DevOps Note: Warte zauważenia Erlang VM wprost na XenCenter: <a href="http://erlangonxen.org/">Erlang on XEN</a></p>
+			</section>
+			<section>
+				<h2>Restarty to przeżytek</h2>
+				<pre>
+				<code class="erlang">
+1> compile:file(z).
+{ok,z}
+2> sys:suspend(z).
+ok
+3> code:purge(z).
+false
+4> code:load_file(z).
+{module,z}
+5> sys:change_code(z,z,"0",[]).
+ok
+6> sys:resume(z).
+ok
+				</code>
+				</pre>
 			</section>
 			
 			<section>
 				<h2>Po co nam zmienne?</h2>
-				<table></table>
+				<img src="img/facepalm.gif" />
+			</section>
+			<section>
+				<h2>Po co nam zmienne?</h2>
+				<p>Nie trzymaj wartości tylko przepis jak ją otrzymać.</p>
+				<pre>
+				  <code class="php">
+				    
+				  </code>
+				  <code class="erlang">
+				  </code>
+				</pe>
+			</section>
+			<section>
+				<h2>Po co nam pętle?</h2>
+				<img src="img/dont_want_to_see_it.gif" />
+			</section>
+			<section>
+				<h2>Po co nam pętle?</h2>
+				<p>Jest przecież rekurencja.</p>
+				<pre>
+				    <code class="erlang">
+multi_print(What, 0) ->
+    done;
+multi_print(What, Times) ->
+    io:format("~p~n", [What]),
+    multi_print(What, Times - 1).
+				    </code>
+				</pre>
+				<p>BTW <i>return</i> też jest zbędny :)</p>
 			</section>
 			
 			<section>
 				<h2>Pattern matching</h2>
-				<code class="hljs erlang-repl">
+				<pre>
+				<code class="erlang">
 1> A = 1.
 1
 2> B = 1.
@@ -85,9 +171,35 @@
 4> A = 2 - 1.
 1
 				</code>
+				</pre>
+				<h3> a jednak się da :)</h3>
 			</section>
 			
-			
+			<section>
+			  <h2>Wykrzycz procesowi co chcesz...</h2>
+			  <p>...ale nie licz na odwet</p>
+			  <pre>
+			    <code>
+Pid ! komunikat.
+
+
+			    </code>
+			  </pre>
+			</section>
+			<section>
+			  <h2>Pozwól się zepsuć, <br />ale pod nadzorem</h2>
+			  <img src="img/sup-tree.png" />
+			  <h3>Let it crash</h3>
+			</section>
+			<section>
+			  <h2>Funkcyjna rodzina</h2>
+			  <ul>
+			    <li><img class="small_logo" src="img/scala.png" />Scala (może być)</li>
+			    <li><img class="small_logo" src="img/FSharp.png" />F#</li>
+			    <li>Lisp (<img class="small_logo" src="img/clojure.gif" />Clojure, Emacs Lisp)</li>
+			    <li><img class="small_logo" src="img/haskell.jpg" />Haskell</li>
+			  </ul>
+			</section>
 			<section>
 				<h1>Koniec</h1>
 				<h2>Dziękuję za uwagę<h2>
