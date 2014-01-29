@@ -47,15 +47,33 @@
 			
 			<section>
 				<h2>Programowanie <br /> pełnym zdaniem</h2>
+				<br />
+				&nbsp;
+				<br />
 				<p>
 				  <small><a href="http://about.me/webik">Marcin Stanislawski</a> (<a href="http://www.interia.pl">Interia.pl</a>)</small>
 				  <br />
-				  <small><a href="https://twitter.com/unilama">@unilama</a></small>
+				  <img border="0" src="img/twitter.png" style="border: 0;vertical-align: top;box-shadow: none;margin: -16px 0 0 0;" height="55" /><small><a href="https://twitter.com/unilama">@unilama</a></small>
 				</p>
+			</section>
+			<section>
+			      <h2>Przykład pętli nieskończonej</h2>
+			      <br />
+			      <h3>Ala ma kota,</h3>
+			      <h3>kot ma Alę.</h3>
 			</section>
 			
 			<section>
-				<h2>Ale o co cho<span style="font-size:0.5em;">dzi</span>???</h2>
+			      <img src="img/wtf.gif" />
+			</section>
+			<section>
+			      <h2>Będzie o programowaniu!</h2>
+			</section>
+			<section>
+			      <img src="img/weezy.gif" />
+			</section>
+			<section>
+				<h2>Ale o co chodzi/kodzi???</h2>
 				<pre>
 				<code class="erlang">
 fall_velocity(Planemo, Distance) ->
@@ -78,8 +96,30 @@ fall_velocity(Planemo, Distance) ->
 			  <img src="img/logo.jpg" />
 			</section>
 			<section>
-			    <h2>Erlang geneza</h2>
-			    <p><s>Ericson Lang</s> Agner Krarup Erlang</p>
+			  <h2>Charakterystyka</h2>
+			  <ul>
+			    <li>funkcyjny</li>
+			    <li>deklaratywny</li>
+			    <li>typowanie dynamiczne</li>
+			    <li>zastosowania współbieżne</li>
+			  </ul>
+			</section>
+			<section>
+			    <h2>Erlang historia</h2>
+			    
+			      <ul>
+				<li>lata '80 - poszukiwania języka do telekomunikacji</li>
+				<li>1990 start projektu</li>
+				<li>1994/95 pierwsza wersja </li>
+				<li>1998  open source</li>
+				<li>ok. 4 lata temu - zwiększa popularność</li>
+			      </ul>
+			      <br />
+			      &nbsp;
+			      <br />
+			    <p>
+			      Nazwa pochodzi od: <s>Ericsson Lang</s> Agner Krarup Erlang
+			    </p>
 			    
 			</section>
 			
@@ -87,21 +127,42 @@ fall_velocity(Planemo, Distance) ->
 			  <h2>Ciekawostka</h2>
 			  <p>W 1998 roku Ericsson zademonstrował switch AXD301 z oprogramowaniem zawierającym milion linii kodu w Erlangu, który osiągnął wskaźnik niezawodności 99,9999999%, co oznaczało, że w ciągu roku system mógł mieć co najwyżej 3,15 sekundy przestoju spowodowanego awarią.</p>
 			</section>
-			
+			<section>
+			<h2>Wróćmy do kodu...</h2>
+			  <pre>
+				<code class="erlang">
+fall_velocity(Planemo, Distance) ->
+  Gravity = case Planemo of
+    earth -> 9.8;
+    moon -> 1.6;
+    mars -> 3.71
+  end,
+  
+  try math:sqrt(2 * Gravity * Distance) of
+    Result -> Result
+  catch
+    error:Error -> {error, Error}
+  end.
+				</code>
+				</pre>
+			</section>
 			<section>
 				<h2>Rzuć pan belkę do maszyny</h2>
-				<img src="img/bob_budowniczy.gif" />
+				<img src="img/bob_budowniczy.gif" height="500" />
 				
 			</section>
 			<section>
 				<h2>Rzuć pan belkę do maszyny.</h2>
-				
+				<br />
 				<p>
 				  <ul>
 				    <li>moduły w plikach źródłowych (.erl)</li>
 				    <li>Erlang VM - pliki BEAM (Bodgan’s Erlang Abstract Machine)</li>
+				    <li>własne wątki</li>
+				    <li>1 VM = 1 proces -> ilość wątków = ilość procesorów</li>
 				  </ul>
 				</p>
+				<br />
 				<p>DevOps Note: Warte zauważenia Erlang VM wprost na XenCenter: <a href="http://erlangonxen.org/">Erlang on XEN</a></p>
 			</section>
 			<section>
@@ -123,25 +184,9 @@ ok
 				</code>
 				</pre>
 			</section>
-			
-			<section>
-				<h2>Po co nam zmienne?</h2>
-				<img src="img/facepalm.gif" />
-			</section>
-			<section>
-				<h2>Po co nam zmienne?</h2>
-				<p>Nie trzymaj wartości tylko przepis jak ją otrzymać.</p>
-				<pre>
-				  <code class="php">
-				    
-				  </code>
-				  <code class="erlang">
-				  </code>
-				</pe>
-			</section>
 			<section>
 				<h2>Po co nam pętle?</h2>
-				<img src="img/dont_want_to_see_it.gif" />
+				<img src="img/facepalm.gif" />
 			</section>
 			<section>
 				<h2>Po co nam pętle?</h2>
@@ -156,6 +201,65 @@ multi_print(What, Times) ->
 				    </code>
 				</pre>
 				<p>BTW <i>return</i> też jest zbędny :)</p>
+			</section>
+			
+			<section>
+				<h2>Po co nam zmienne?</h2>
+			</section>
+			<section>
+			  <img src="img/dont_want_to_see_it.gif" />
+			</section>
+			<section>
+				<h2>Po co nam zmienne?</h2>
+				<pre>
+				  <code class="php">
+function fib_iter($n)
+{
+    if($n <= 2){
+        return 1;
+    }else{
+        $a = 1;
+        $b = 1;
+        $c = 0;
+        for($i=0; $i<$n-2; $i++){
+            $c = $a + $b;
+            $a = $b;
+            $b = $c;
+        }
+        return $c;
+    }
+}				  </code>
+				  </pre>
+				  <small>Źródło: Wikipedia</small>
+			      </section>
+			      <section>
+				<pre>
+				  <code class="php">
+function fib_rek($n)
+{
+	if($n==0)
+	{
+		    return 0;
+	}
+	if($n==1)
+	{
+		    return 1;
+	}
+	return fib_rek($n-2) + fib_rek($n-1);
+}
+				  </code>
+				</pre>
+				<small>Źródło: Wikipedia</small>
+			</section>
+			<section>
+				<pre>
+				  <code class="erlang">
+fib(N)               -> fib(N, 0, 1).
+fib(0, Result, _)    -> Result;
+fib(N, Result, Next) -> fib(N - 1, Next, Result + Next).
+				  </code>
+				</pre>
+				<small>Źródło: Wikipedia</small>
 			</section>
 			
 			<section>
@@ -174,15 +278,57 @@ multi_print(What, Times) ->
 				</pre>
 				<h3> a jednak się da :)</h3>
 			</section>
-			
 			<section>
-			  <h2>Wykrzycz procesowi co chcesz...</h2>
+			  <h2>Głowa i ogon</h2>
+			  <img src="img/headless.jpg" />
+			</section>
+			<section>
+			  <h2>Głowa i ogon</h2>
+			  <pre>
+			    <code class="erlang">
+1> Lista = [1,2,3].
+[1,2,3]
+2> [Head | Tail] = Lista.
+[1,2,3]
+3> Head.
+1
+4> Tail.
+[2,3]
+5> [A,B] = Tail.
+[2,3]
+6> A.
+2
+7> B.
+3
+			    </code>
+			  </pre>
+			</section>
+			<section>
+			  <h2>Koszula bliższa ciału:</h2>
+			  <pre>
+			    <code class="php">
+			    list($h,$t) = array(1,2,3);
+			    echo $h; // 1
+			    echo $t; // 2
+			    list(,,$t) = array(1,2,3);
+			    echo $t; // 3
+			    </code>
+			  </pre>
+			</section>
+			<section>
+			  <h2>Wykrzycz procesowi,<br /> co chcesz...</h2>
+			  <pre>
+			    <code class="erlang">
+1> Pid = self().
+<0.32.0>
+2> Pid ! komunikat.
+			    </code>
+			  </pre>
 			  <p>...ale nie licz na odwet</p>
 			  <pre>
-			    <code>
-Pid ! komunikat.
-
-
+			    <code class="erlang">
+1> receive X -> X end.
+komunikat
 			    </code>
 			  </pre>
 			</section>
@@ -190,6 +336,9 @@ Pid ! komunikat.
 			  <h2>Pozwól się zepsuć, <br />ale pod nadzorem</h2>
 			  <img src="img/sup-tree.png" />
 			  <h3>Let it crash</h3>
+			</section>
+			<section>
+			  <h2>Erlang nie jest jedyny<h2/>
 			</section>
 			<section>
 			  <h2>Funkcyjna rodzina</h2>
